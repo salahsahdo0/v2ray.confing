@@ -1,0 +1,18 @@
+name: Generate V2Ray Config
+on: [workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Generate Config
+      uses: sprov065/v2ray-config-generator@main
+      with:
+        uuid: ${{ secrets.UUID }}
+        alterId: 0
+        protocol: "vless"
+        network: "ws"
+    - uses: actions/upload-artifact@v3
+      with:
+        name: config
+        path: config.json
